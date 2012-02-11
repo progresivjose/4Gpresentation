@@ -1,0 +1,31 @@
+<h2>Galeria de Imagenes <small>Proyecto </small></h2>
+<hr />
+<div>
+  <%= link_to 'Agregar Imagen', agregar_foto_path(params[:id]) %>
+</div>
+<%#= @fotos.inspect %>
+<% if @fotos.present? %>  
+  <table>
+    <tr>
+      <%  @fotos.each do |foto| %>
+
+	<td>
+	  <div>
+	    <%= image_tag foto.imagen.thumb('100x100').url if foto.imagen_uid %>
+	  </div>
+	  <div>
+	    <%= foto.nombre %>
+	    <div>
+	      <%= link_to "Ver", show_foto_path(foto.id) %>
+	    </div>
+	  </div>
+	</td>
+
+      <% end %>
+    </tr>
+  </table>
+<%  else %>
+  <p>No tiene fotos ingresadas</p>
+<% end  %>
+
+

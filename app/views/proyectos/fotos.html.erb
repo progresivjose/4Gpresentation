@@ -1,0 +1,10 @@
+<h2>Galeria de Imagenes</h2>
+<hr />
+<div>
+  <%= link_to 'Agregar Imagen', :action => 'agregar_foto' %>
+</div>
+<% if @proyecto.fotos.present?  %>
+  <%= render :partial => "fotos/tabla_proyecto_fotos" %>
+<%  else %>
+  <p>No tiene fotos ingresadas</p>
+<% end  %>

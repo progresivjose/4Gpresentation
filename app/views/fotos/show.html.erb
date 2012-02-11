@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @foto.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @foto.descripcion %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @foto.tipo %>
+</p>
+
+<p>
+  <b>Imagen:</b>
+  <%= image_tag @foto.imagen.thumb('200x200').url if @foto.imagen_uid%>
+</p>
+
+
+<%#= link_to 'Edit', edit_foto_path(@foto) %> 
+<%#= link_to 'Back', index_fotos_path(:id => proyecto.id)  %>
