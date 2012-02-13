@@ -1,29 +1,30 @@
 <h2>Galeria de Imagenes <small>Proyecto </small></h2>
 <hr />
-<div>
-  <%= link_to 'Agregar Imagen', agregar_foto_path(params[:id]) %>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Proyectos'), proyectos_path %>  
+  <%= link_to content_tag(:i, '', :class => 'icon-plus', :title => 'Agregar Foto'), new_foto_path(params[:id]) %>
 </div>
 <%#= @fotos.inspect %>
 <% if @fotos.present? %>  
-  <table>
-    <tr>
-      <%  @fotos.each do |foto| %>
+  <div class="row">
+    <%  @fotos.each do |foto| %>
 
-	<td>
+      <div class="span3" style="text-align: center">
+	<div>
+	  <%= image_tag foto.imagen.thumb('100x100').url if foto.imagen_uid %>
+	</div>
+	<div>
+	  <%= foto.nombre %>
 	  <div>
-	    <%= image_tag foto.imagen.thumb('100x100').url if foto.imagen_uid %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver' ), show_foto_path(foto.id) %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar' ), edit_foto_path(foto.id) %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-ban-circle', :title => 'Eliminar' ), foto, confirm: 'Esta seguro?', method: :delete %>
 	  </div>
-	  <div>
-	    <%= foto.nombre %>
-	    <div>
-	      <%= link_to "Ver", show_foto_path(foto.id) %>
-	    </div>
-	  </div>
-	</td>
+	</div>
+      </div>
 
-      <% end %>
-    </tr>
-  </table>
+    <% end %>
+  </div>
 <%  else %>
   <p>No tiene fotos ingresadas</p>
 <% end  %>

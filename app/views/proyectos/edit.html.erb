@@ -1,6 +1,10 @@
-<h1>Editing proyecto</h1>
+<h2>Editar Proyecto</h2>
+<hr />
+
+<p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Proyectos'), proyectos_path  %>
+  <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver'), @proyecto %> 
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @proyecto %> |
-<%= link_to 'Back', proyectos_path %>

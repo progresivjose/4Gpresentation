@@ -1,5 +1,9 @@
-<h1>New proyecto</h1>
+<h2>Nuevo Proyecto</h2>
+<hr />
+
+<p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Proyectos'), proyectos_path  %>
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', proyectos_path %>

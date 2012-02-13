@@ -9,8 +9,12 @@ gem 'rails', '3.2.0'
 gem 'pg'
 gem "simple_form", "~> 2.0.0.rc"
 
+
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
+gem 'carrierwave'
+gem "paperclip", "~> 2.0"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

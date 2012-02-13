@@ -12,11 +12,11 @@
 	<tr>
 	  <td><%= proyecto.nombre %></td>
 	  <td>
-	    <%= link_to 'Galeria', index_fotos_path(:id => proyecto.id) %>
-	    <%= link_to 'Videos', index_videos_path(:id => proyecto.id) %>
-	    <%= link_to 'Ver', proyecto %>
-	    <%= link_to 'Editar', edit_proyecto_path(proyecto)%>
-	    <%= link_to 'Eliminar', proyecto, confirm: 'Esta seguro?', method: :delete %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-picture', :title => 'Galeria'), index_fotos_path(:id => proyecto.id) %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-film', :title => 'Videos'), index_videos_path(:id => proyecto.id) %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver'), proyecto %>
+	    <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar'), edit_proyecto_path(proyecto)%>
+	    <%= link_to content_tag(:i, '', :class => 'icon-ban-circle', :title => 'Eliminar'), proyecto, confirm: 'Esta seguro?', method: :delete %>
 	  </td>
 	</tr>
 

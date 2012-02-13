@@ -1,6 +1,11 @@
-<h1>Editing foto</h1>
+<h2>Editar Foto <small>Proyecto </small></h2>
+<hr />
+
+<p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Galeria'), index_fotos_path(@foto.proyecto_id) %> 
+  <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver Foto'), show_foto_path(@foto.id)  %>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @foto %> |
-<%= link_to 'Back', index_fotos_path(:id => params[:id]) %>

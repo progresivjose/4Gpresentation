@@ -10,6 +10,12 @@
   <%= @video.descripcion %>
 </p>
 
+<p>
+  <b>Video:</b>
+  <%= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
+  <%#= image_tag(@video.video_url)  if @video.video? %>
+</p>
+
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>

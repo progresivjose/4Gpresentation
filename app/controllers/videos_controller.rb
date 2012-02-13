@@ -25,6 +25,7 @@ class VideosController < ApplicationController
   # GET /videos/new.json
   def new
     @video = Video.new
+    @video.proyecto_id = params[:id]
 
     respond_to do |format|
       format.html # new.html.erb
