@@ -1,0 +1,54 @@
+<%= form_for @disco, :html => { :multipart => true } do |f| %>
+  <% if @disco.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@disco.errors.count, "error") %> prohibited this disco from being saved:</h2>
+
+      <ul>
+	<% @disco.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_area :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :imagen %><br />
+    <%= f.file_field :imagen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :muestra %><br />
+    <%= f.file_field :muestra %>
+  </div>
+
+<fieldset>
+    <legend>Pistas</legend>
+    <table>
+      <thead style="margin-bottom: 20px;">
+	<tr>
+	  <th>Nombre</th>
+	</tr>
+
+      </thead>
+      <tbody id="pistas">
+	<%= f.fields_for :pistas do |builder| %>
+	  <%= render "campos_pista", :f => builder %>
+	<% end %>
+      </tbody>
+    </table>
+    <%= link_to_add_fields "Agregar Pista", f, :pistas, :container => 'pistas' %>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

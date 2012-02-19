@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @disco.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @disco.descripcion %>
+</p>
+
+<p>
+  <b>Imagen:</b>
+  <%= image_tag(@disco.imagen_url) if @disco.imagen? %>
+</p>
+<p>
+  
+  <b>Muestra:</b>
+  <%= audio_tag(@disco.muestra, :controls => true) %>
+</p>
+<fieldset>
+  <layaout>Pistas</layaout>
+  <table>
+    <thead>
+      <tr>
+	<th>Nombre</th>
+      </tr>
+    </thead>
+    <% for pista in @disco.pistas %>
+    <tr>
+      <td><%= pista.nombre  %></td>
+    </tr>
+    <% end %>
+  </table>
+</fieldset>
+
+<%= link_to 'Edit', edit_disco_path(@disco) %> |
+<%= link_to 'Back', discos_path %>

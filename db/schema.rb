@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211171041) do
+ActiveRecord::Schema.define(:version => 20120219160229) do
+
+  create_table "discos", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.string   "muestra"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "imagen"
+  end
 
   create_table "fotos", :force => true do |t|
     t.string   "nombre"
@@ -25,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20120211171041) do
   end
 
   add_index "fotos", ["proyecto_id"], :name => "index_fotos_on_proyecto_id"
+
+  create_table "pista", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "disco_id"
+  end
+
+  add_index "pista", ["disco_id"], :name => "index_pista_on_disco_id"
 
   create_table "proyectos", :force => true do |t|
     t.string   "nombre"

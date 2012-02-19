@@ -1,4 +1,11 @@
+<h2>Ver VIdeo <small>Proyecto </small></h2>
+<hr />
+
 <p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Videos'), videos_path(:id => @video.proyecto_id)  %>
+  <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar'), edit_video_path(@foto) %> 
+</div>
 
 <p>
   <b>Nombre:</b>
@@ -15,7 +22,3 @@
   <%= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
   <%#= image_tag(@video.video_url)  if @video.video? %>
 </p>
-
-
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>

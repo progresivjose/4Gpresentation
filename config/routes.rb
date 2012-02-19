@@ -1,5 +1,7 @@
 Forgpresentation::Application.routes.draw do
 
+  resources :discos
+
   resources :proyectos
   resources :fotos
   resources :videos
@@ -8,6 +10,7 @@ Forgpresentation::Application.routes.draw do
   match '/fotos/:id', :to => 'fotos#show', :as => 'show_foto'
   match '/fotos/:id/edit', :to => 'fotos#edit', :as => 'edit_foto'
   match '/fotos/:id/new', :to => 'fotos#new', :as => 'new_foto'  
+  match '/videos/:id/new', :to => 'videos#new', :as => 'new_video'  
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.

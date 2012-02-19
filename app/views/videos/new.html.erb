@@ -1,4 +1,10 @@
-<h1>New video</h1>
+<h2>Nuevo Video <small>Proyecto </small></h2>
+<hr />
+
+<p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a Videos'), videos_path(:id => @video.proyecto_id) %> 
+</div>
 
 <%= render 'form' %>
 
