@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <h3>Videos</h3>
+    <hr />
+  </div>
+  <% @videos.each do |video| %>
+    <div class="descripcion" style="margin-left: 10px;">
+      <h4><%= video.nombre  %> </h4>
+      <p><%= video.descripcion  %> </p>
+    </div>
+    <div style="text-align: center">
+      <%= video_tag(video.video_url, :controls => true, :autobuffer => true) if video.video? %>
+    </div>
+  <% end %>
+</div>

@@ -12,6 +12,7 @@
 	<tr>
 	  <td><%= proyecto.nombre %></td>
 	  <td>
+	    <%= link_to content_tag(:i, '', :class => 'icon-play-circle', :title => 'Ver Demo'), ver_proyecto_path(:id => proyecto.id), :target => :blank %>
 	    <%= link_to content_tag(:i, '', :class => 'icon-picture', :title => 'Galeria'), index_fotos_path(:id => proyecto.id) %>
 	    <%= link_to content_tag(:i, '', :class => 'icon-film', :title => 'Videos'), videos_path(:id => proyecto.id) %>
 	    <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver'), proyecto %>

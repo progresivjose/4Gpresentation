@@ -1,0 +1,16 @@
+<% @discos.each do |disco| %>
+<div style="height: 800px;">
+  
+  <div style="float: left; padding-left: 22px; margin-right: 20px;">
+    <%= image_tag(disco.imagen_url, :height => '228', :width => '231')  if disco.imagen? %>
+  </div>
+  <div>
+    <p style="color:#328CBE; font-size: 18px"><%= disco.nombre%> </p>
+    <ul style="list-style: none">
+    <% for pista in disco.pistas %>
+      <li><%= pista.nombre%> </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>

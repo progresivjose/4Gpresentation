@@ -11,6 +11,10 @@ Forgpresentation::Application.routes.draw do
   match '/fotos/:id/edit', :to => 'fotos#edit', :as => 'edit_foto'
   match '/fotos/:id/new', :to => 'fotos#new', :as => 'new_foto'  
   match '/videos/:id/new', :to => 'videos#new', :as => 'new_video'  
+  match '/proyectos/:id/ver_proyecto', :to => 'proyectos#ver_proyecto', :as => 'ver_proyecto'
+  match '/videos/:id/ver_video', :to => 'videos#ver_video', :as => 'ver_video'
+  match '/fotos/:id/ver_galeria', :to => 'fotos#ver_galeria', :as => 'ver_galeria'
+  match '/discos/:id/ver_catalogo', :to => 'discos#ver_catalogo', :as => 'ver_catalogo'
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,111 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="Generator" content="iWeb 3.0" />
+    <meta name="iWeb-Build" content="local-build-20120225" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta name="viewport" content="width=684" />
+
+    <title>Presentacion del Disco</title>
+    <%= stylesheet_link_tag    "glisse", :media => "all" %>
+    <%= stylesheet_link_tag    "interna", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "glisse.min" %>
+    <style>
+
+<%#*body{ background-color:#AFC4BD}%>
+      body{
+	background-image: url(/assets/presentacion/Mod_background.jpg);
+      }
+      .container{
+	width: 681px;
+	margin: 26px auto auto;
+	border: 0.5px solid #97A29E;
+	box-shadow: 4px 10px 5px #888;
+	background-color: #FBFBFB;
+      }
+
+      .navbar{
+	width: 100%;
+	float: left;
+	padding-left: 10px;
+      }
+
+      .navbar ul{
+	float: right;
+	background-color: #E87765;
+	padding: 3px;
+	padding-left: 10px;
+	margin-right: 20px;
+      }
+
+      .navbar ul li{
+	list-style: none;
+	float: left;
+	margin-bottom: 5px;
+	margin-right: 25px;
+
+	color: #000000;
+	font-family: Helvetica,serif;
+	font-size: 0.7em;
+	line-height: 1.6em;
+	text-transform: uppercase;
+      }
+
+      .navbar ul li a{
+	text-decoration: none;
+	color: #333333;
+      }
+
+      hr{
+	background-color: #E87765;
+	border-style: hidden;
+	color: #E87765;
+	height: 1px;
+      }
+
+      h3{
+	color: #A3A39E;
+	font-family: Helvetica,serif;
+	margin-left: 5px;
+      }
+
+      .content p, .content label, .content li, .footer p{
+	color: #424242;
+	font-family: 'Helvetica','Arial',sans-serif;
+	font-size: 12px;
+      }
+
+      .footer p{
+	padding-left: 5px;
+      }
+
+      .footer p a{
+	text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+	<ul>
+	  <li><%= link_to 'Inicio', ver_proyecto_path(:id => params[:id]) %></li>
+	  <li><%= link_to 'Catalogo', ver_catalogo_path %></li>
+	  <li><%= link_to 'Video', ver_video_path(:id => params[:id]) %></li>
+	  <li><%= link_to 'Galeria', ver_galeria_path(:id => params[:id]) %></li>
+	</ul>
+      </div>
+      <div class="content">
+	<%= yield %>
+      </div>
+      <div class="footer">
+	<hr />
+	<p>Para contactar con Germán Lema, <a title="Envia email" href=" mailto:gerlema@gmail.com">aqu&iacute;</a></p>
+      </div>
+    </div>
+
+  </body>
+</html>

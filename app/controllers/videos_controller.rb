@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-#    @videos = Video.all
+		#    @videos = Video.all
     @videos = Video.find_all_by_proyecto_id(params[:id])
 
     respond_to do |format|
@@ -82,4 +82,9 @@ class VideosController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def ver_video
+		@videos = Video.find_all_by_proyecto_id(params[:id])
+		render :layout => "interna"
+	end
 end

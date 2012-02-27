@@ -1,0 +1,32 @@
+/* 
+    Document   : presentacion
+    Created on : Feb 27, 2012, 4:56:10 PM
+    Author     : josemanuel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body{
+/*    background-color:#AFC4BD;*/
+    background-image: url(/assets/presentacion/Mod_background.jpg);
+}
+
+.container{
+/*    background-color:#AFC4BD;*/
+    background-image: url(/assets/presentacion/Mod_background.jpg);
+    /*    background-image: url(/assets/presentacion/portada_fotos.JPG);*/
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 600px;
+}
+
+.content{
+        text-align: center;
+}
+

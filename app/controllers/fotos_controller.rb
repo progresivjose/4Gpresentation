@@ -83,4 +83,9 @@ class FotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def ver_galeria
+		@fotos = Foto.find_all_by_proyecto_id(params[:id])
+		 render :layout => "interna"
+	end
 end

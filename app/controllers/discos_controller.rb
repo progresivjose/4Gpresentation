@@ -26,7 +26,7 @@ class DiscosController < ApplicationController
   def new
     @disco = Disco.new
 
-	pista = @disco.pistas.build
+		pista = @disco.pistas.build
 		
     respond_to do |format|
       format.html # new.html.erb
@@ -82,4 +82,11 @@ class DiscosController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def ver_catalogo
+		@discos = Disco.all
+		
+		render :layout => 'interna'
+	end
+	
 end

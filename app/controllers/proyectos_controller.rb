@@ -100,4 +100,8 @@ class ProyectosController < ApplicationController
 		end
 	end
 	
+	def ver_proyecto
+		@proyecto = Proyecto.find(params[:id])
+		render :layout => 'index'
+	end
 end
