@@ -394,8 +394,34 @@ class ProyectosController < ApplicationController
 		end
 		
 		#crear el zip
-
+		#    Zip::ZipFile.open("#{Rails.root}/public/download/prueba.zip", Zip::ZipFile::CREATE)do |zipfile|
+		#      Find.find(dir) do |path|
+		#        Find.prune if File.basename(path)[0] == ?.
+		#        dest = /#{dir}\/(\w.*)/.match(path)
+		#        # Skip files if they exists
+		#        begin
+		#          zipfile.add(dest[1],path) if dest
+		#        rescue Zip::ZipEntryExistsError
+		#        end
+		#      end
+		#    end
+		#    
+		path_o = "#{Rails.root}/public/downloads"
+		path = "#{path_o}/proyecto"
+		path.sub!(%r[/$],'')
+		archive = File.join(path_o,File.basename(path))+'.zip'
+		FileUtils.rm archive, :force=>true
+		level = Zlib::BEST_COMPRESSION
+		Zip::ZipFile.open(archive, 'w') do |zip|
+			Dir["#{path}/**/**"].reject{|f|f==archive}.each do |file|
+				zip.add(file.sub(path+'/',''),file)
+			end
+		end
+		
 		#descargo el archivo
-		send_file "#{Rails.root}/public/download/proyecto/images/portada.jpg", :type=>"image/jpg"
+		send_file "#{path_o}/proyecto.zip", :type=>"application/zip"
+		
+		FileUtils.rm_rf path
+		File.delete("#{path_o}/proyecto.zip")
   end
 end
