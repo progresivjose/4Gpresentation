@@ -2,11 +2,32 @@
 <html>
   <head>
     <title>Presentacion del Disco</title>
-    <%= stylesheet_link_tag 'presentacion', :media => 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <style>
+
+      body{
+	/*    background-color:#AFC4BD;*/
+	background-image: url(/assets/presentacion/Mod_background.jpg);
+      }
+
+      #container{
+	/*    background-color:#AFC4BD;*/
+	background-image: url(/assets/presentacion/Mod_background.jpg);
+	/*    background-image: url(/assets/presentacion/portada_fotos.JPG);*/
+	background-repeat: no-repeat;
+	background-position: center;
+
+	height: 600px;
+      }
+
+      #content{
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-    <%= yield  %>
+    <div id="container">
+      <%= yield  %>
     </div>
   </body>
 </html>

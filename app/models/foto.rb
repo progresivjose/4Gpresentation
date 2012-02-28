@@ -1,5 +1,5 @@
 class Foto < ActiveRecord::Base
-	image_accessor :imagen   
+	mount_uploader :imagen, AvatarUploader   
 	
 	validates :nombre, :presence => true
 #	validates :tipo, :presence => true

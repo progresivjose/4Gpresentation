@@ -8,7 +8,8 @@
   <% @fotos.each do |foto|%>
     <div style="float: left;margin: 15px;">
       <div style="margin-bottom: 5px;">
-	<%= image_tag foto.imagen.thumb('200x200').url, :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
+	<%#= image_tag foto.imagen.thumb('200x200').url, :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
+	<%= image_tag foto.imagen_url, :height => '200', :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
       </div>
       <div style="text-align: center;">
 	<%= label_tag(foto.nombre) %>

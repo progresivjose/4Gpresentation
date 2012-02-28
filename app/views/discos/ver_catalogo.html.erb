@@ -1,6 +1,11 @@
 <% @discos.each do |disco| %>
 <div style="height: 800px;">
   
+    <div>
+    <h3>Cat&aacute;logo</h3>
+    <hr />
+  </div>
+  
   <div style="float: left; padding-left: 22px; margin-right: 20px;">
     <%= image_tag(disco.imagen_url, :height => '228', :width => '231')  if disco.imagen? %>
   </div>
@@ -11,6 +16,7 @@
       <li><%= pista.nombre%> </li>
     <% end %>
     </ul>
+    <%= audio_tag(disco.muestra, :controls => true)%>
   </div>
 </div>
 <% end %>

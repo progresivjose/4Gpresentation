@@ -15,6 +15,7 @@ Forgpresentation::Application.routes.draw do
   match '/videos/:id/ver_video', :to => 'videos#ver_video', :as => 'ver_video'
   match '/fotos/:id/ver_galeria', :to => 'fotos#ver_galeria', :as => 'ver_galeria'
   match '/discos/:id/ver_catalogo', :to => 'discos#ver_catalogo', :as => 'ver_catalogo'
+  match 'download' => 'proyectos#download';
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.

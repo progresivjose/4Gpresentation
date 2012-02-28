@@ -1,8 +1,30 @@
-<div class="content">
-<%= image_tag "presentacion/portada_fotos.JPG", 'usemap' => '#links' %>
-<map id="links" name="links">
-  <area shape="rect" coords="45, 36, 303, 304" href="<%= ver_galeria_path%> " alt="fotos"/>
-  <area shape="rect" coords="305, 36, 564, 304" href="<%= ver_video_path%> " alt="fotos"/>
-  <area shape="rect" coords="45, 304, 303, 577" href="<%= ver_catalogo_path%> " alt="fotos"/>
-</map>
-  </div>
+<div id="content">
+  <%= image_tag "presentacion/portada.jpg", 'usemap' => '#links', :class => 'imagen' %>
+  <map id="links" name="links">
+    <area shape="rect" coords="45, 36, 303, 304" href="<%= ver_galeria_path%> " alt="fotos" onmouseover="cambiarImagen('foto')" onmouseout="volverPortada()"/>
+    <area shape="rect" coords="305, 36, 564, 304" href="<%= ver_video_path%> " alt="video" onmouseover="cambiarImagen('video')" onmouseout="volverPortada()"/>
+    <area shape="rect" coords="45, 304, 303, 577" href="<%= ver_catalogo_path%> " alt="catalogo" onmouseover="cambiarImagen('catalogo')" onmouseout="volverPortada()"/>
+    <area shape="rect" coords="305, 304, 564, 577" href="# " alt="contacto" onmouseover="cambiarImagen('contacto')" onmouseout="volverPortada()"/>
+  </map>
+</div>
+
+<script type="text/javascript">
+  function cambiarImagen(imagen){
+    if(imagen == 'foto'){
+      $(".imagen").attr('src','<%= image_path('presentacion/portada_fotos.JPG') %>' )
+    }
+    if(imagen == 'video'){
+      $(".imagen").attr('src','<%= image_path('presentacion/portada_video.jpg') %>' )
+    }
+    if(imagen == 'catalogo'){
+      $(".imagen").attr('src','<%= image_path('presentacion/portada_catalogo.jpg') %>' )
+    }
+    if(imagen == 'contacto'){
+      $(".imagen").attr('src','<%= image_path('presentacion/portada_contacto.JPG') %>' )
+    }
+  }
+  
+  function volverPortada(){
+    $(".imagen").attr('src','<%= image_path('presentacion/portada.jpg') %>' )
+  }
+</script>

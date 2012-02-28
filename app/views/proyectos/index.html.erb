@@ -2,27 +2,35 @@
   <div class="page-header">
     <h1>Proyectos<small> Lista de acciones</small></h1>
   </div>
-  
-    <table class="table table-striped table-bordered table-condensed">
-      <thead>
-      <th>Titulo</th>
-      <th>Acciones</th>
-      </thead>
-      <% @proyectos.each do |proyecto| %>
-	<tr>
-	  <td><%= proyecto.nombre %></td>
-	  <td>
-	    <%= link_to content_tag(:i, '', :class => 'icon-play-circle', :title => 'Ver Demo'), ver_proyecto_path(:id => proyecto.id), :target => :blank %>
-	    <%= link_to content_tag(:i, '', :class => 'icon-picture', :title => 'Galeria'), index_fotos_path(:id => proyecto.id) %>
-	    <%= link_to content_tag(:i, '', :class => 'icon-film', :title => 'Videos'), videos_path(:id => proyecto.id) %>
-	    <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver'), proyecto %>
-	    <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar'), edit_proyecto_path(proyecto)%>
-	    <%= link_to content_tag(:i, '', :class => 'icon-ban-circle', :title => 'Eliminar'), proyecto, confirm: 'Esta seguro?', method: :delete %>
-	  </td>
-	</tr>
 
-      <% end %>
-    </table>
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+    <th>Titulo</th>
+    <th>Acciones</th>
+    </thead>
+    <% @proyectos.each do |proyecto| %>
+      <tr>
+	<td><%= proyecto.nombre %></td>
+	<td>
+	  <%= link_to content_tag(:i, '', :class => 'icon-play-circle', :title => 'Ver Demo'), ver_proyecto_path(:id => proyecto.id), :target => :blank %>
+	  <%#= link_to content_tag(:i, '', :class => 'icon-download-alt', :title => 'Descargar Proyecto'), '#', :onclick => 'descarga()'%>
+	  <%= link_to content_tag(:i, '', :class => 'icon-download-alt', :title => 'Descargar Proyecto'), :controller => 'proyectos', :action => 'download', :id => proyecto.id%>
+	  <%= link_to content_tag(:i, '', :class => 'icon-picture', :title => 'Galeria'), index_fotos_path(:id => proyecto.id) %>
+	  <%= link_to content_tag(:i, '', :class => 'icon-film', :title => 'Videos'), videos_path(:id => proyecto.id) %>
+	  <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver'), proyecto %>
+	  <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar'), edit_proyecto_path(proyecto)%>
+	  <%= link_to content_tag(:i, '', :class => 'icon-ban-circle', :title => 'Eliminar'), proyecto, confirm: 'Esta seguro?', method: :delete %>
+	</td>
+      </tr>
 
-    <%= link_to 'Agregar Proyecto', new_proyecto_path, :class => 'btn btn-primary' %>
+    <% end %>
+  </table>
+  <%= link_to 'Agregar Proyecto', new_proyecto_path, :class => 'btn btn-primary' %>
 </section>
+
+<script type="text/javascript">
+  function descarga(){
+    window.location='<%= url_for :controller => 'proyectos',  :action=>"download" %>';
+  }
+
+</script>
