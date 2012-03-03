@@ -4,9 +4,9 @@
       <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
 
       <ul>
-      <% @video.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+	<% @video.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
       </ul>
     </div>
   <% end %>
@@ -20,18 +20,22 @@
     <%= f.label :descripcion %><br />
     <%= f.text_area :descripcion %>
   </div>
-<span>
- OGG
-</span>
-<div class="field">
-    
+
+  <div class="field">
+    <%= f.label :video, 'Video ogg' %>
     <%= f.file_field :video %>
   </div>
-<%#*<span>%>
+
+  <div class="field">
+    <%= f.label :video_mp4, 'Video mp4' %>
+    <%= f.file_field :video_mp4 %>
+  </div>
+
+  <%#*<span>%>
   <%#*MP4%>
-<%#*</span>%>
+  <%#*</span>%>
   <%#*<div class="field">%>
-    <%#= f.file_field :video %>
+  <%#= f.file_field :video %>
   <%#*</div>%>
   <div class="actions">
     <%= f.submit %>

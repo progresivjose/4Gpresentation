@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219160229) do
+ActiveRecord::Schema.define(:version => 20120301221455) do
 
   create_table "discos", :force => true do |t|
     t.string   "nombre"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120219160229) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "imagen"
+    t.string   "audio_mp3"
   end
 
   create_table "fotos", :force => true do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120219160229) do
     t.datetime "updated_at",  :null => false
     t.integer  "proyecto_id"
     t.string   "video"
+    t.string   "video__mp4"
   end
 
   add_index "videos", ["proyecto_id"], :name => "index_videos_on_proyecto_id"

@@ -5,7 +5,7 @@ class ProyectosController < ApplicationController
 	
   def index
     @proyectos = Proyecto.all
-
+#	@user_agent = request.env['HTTP_USER_AGENT']
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @proyectos }
@@ -131,6 +131,8 @@ class ProyectosController < ApplicationController
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/portada_contacto.JPG", "#{Rails.root}/public/downloads/proyecto/images/portada_contacto.JPG")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/portada_fotos.JPG", "#{Rails.root}/public/downloads/proyecto/images/portada_fotos.JPG")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/portada_video.jpg", "#{Rails.root}/public/downloads/proyecto/images/portada_videos.jpg")
+		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/favicon.ico", "#{Rails.root}/public/downloads/proyecto/images/favicon.ico")
+		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/LOGO.ico", "#{Rails.root}/public/downloads/proyecto/images/LOGO.ico")
 		FileUtils.copy("#{Rails.root}/public/jquery.min.js", "#{Rails.root}/public/downloads/proyecto/javascript/jquery.min.js")
 		
 		discos.each do |disco|
@@ -154,6 +156,7 @@ class ProyectosController < ApplicationController
 			<html>
 			<head>
 			<title>Presentacion del Disco</title>
+			<link rel="shortcut icon" href="images/favicon.ico" />
 			<script src="javascript/jquery.min.js"></script>
 			<style>
 
@@ -214,6 +217,7 @@ class ProyectosController < ApplicationController
 		
 		#internas
 		head  = '<!DOCTYPE html><html><head><title>Presentacion del Disco</title>
+						<link rel="shortcut icon" href="images/favicon.ico" />
 						<script src="javascript/jquery.min.js"></script>
 						<script src="javascript/glisse.min.js"></script>
 						<link rel="stylesheet" href="css/glisse.css" />
@@ -274,7 +278,10 @@ class ProyectosController < ApplicationController
 			end
 		
 			catalogo_string << "</ul>
-    <audio controls='controls'><source src='audio/#{f.id}.ogg' type='audio/ogg'/></audio>
+    <audio controls='controls'>
+		<source src='audio/#{f.id}.ogg' type='audio/ogg'/>
+		<source src='audio/#{f.id}.mp3' type='audio/mp3'/>
+	</audio>
   </div>"
 		end
 		catalogo_string << '</div>'
@@ -288,10 +295,19 @@ class ProyectosController < ApplicationController
       <p>#{f.descripcion}</p>
     </div>
     <div style=\"text-align: center\">
-		<video controls='controls'><source src = 'video/#{f.id}.ogg' type='video/ogg' /></video>
+		<video controls='controls'>
+			<source src = 'video/#{f.id}.ogg' type='video/ogg' />
+			<source src = 'video/#{f.id}.mp4' type='video/mp4' />
+		</video>
     </div>"
 		end
 		video_string << '</div>'
+		
+		contacto_string = "<div style=\"height: 600px;\"><div><h3>Contacto</h3><hr /></div> "
+		contacto_string << "<p style='margin-left:10px'>Para contactar con Germ&aacute;n Lema,<a href='mailto:gerlema@gmail.com' style='text-decoration:none'> aqui</a></p>"
+		contacto_string << "<p style='margin-left:10px'>Para contactar con Patas Arriba,<a href='mailto:patas.py@gmail.com'  style='text-decoration:none'> aqui</a><p>"
+		contacto_string << "</div	>"
+		
 		
 		File.open("#{Rails.root}/public/downloads/proyecto/video.html", "w")	do |f|
 			f << head
@@ -303,6 +319,13 @@ class ProyectosController < ApplicationController
 		File.open("#{Rails.root}/public/downloads/proyecto/catalogo.html", "w")	do |f|
 			f << head
 			f << catalogo_string
+			f << foot
+		end
+		
+		
+		File.open("#{Rails.root}/public/downloads/proyecto/contacto.html", "w")	do |f|
+			f << head
+			f << contacto_string
 			f << foot
 		end
 		

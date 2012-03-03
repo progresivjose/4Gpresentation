@@ -12,6 +12,7 @@ gem "simple_form", "~> 2.0.0.rc"
 
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.10'
+#gem "rmagick"
 gem 'carrierwave'
 gem "paperclip", "~> 2.0"
 gem "rubyzip", :require => 'zip/zip'

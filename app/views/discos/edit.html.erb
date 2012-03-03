@@ -1,6 +1,10 @@
-<h1>Editing disco</h1>
+<h2>Editar Disco</h2>
+<hr />
+
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver al catalogo'), discos_path %> 
+  <%= link_to content_tag(:i, '', :class => 'icon-list-alt', :title => 'Ver Disco'), disco_path(@disco) %>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @disco %> |
-<%= link_to 'Back', discos_path %>

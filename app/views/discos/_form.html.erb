@@ -10,7 +10,8 @@
       </ul>
     </div>
   <% end %>
-
+<div class="row">
+<div class="span4">
   <div class="field">
     <%= f.label :nombre %><br />
     <%= f.text_field :nombre %>
@@ -26,12 +27,19 @@
   </div>
 
   <div class="field">
-    <%= f.label :muestra %><br />
+    <%= f.label :muestra, 'Audio ogg' %><br />
     <%= f.file_field :muestra %>
   </div>
 
+  <div class="field">
+    <%= f.label :audio_mp3, 'Audio mp3' %><br />
+    <%= f.file_field :audio_mp3	 %>
+  </div>
+</div>
+  <div class="span6">
 <fieldset>
     <legend>Pistas</legend>
+    <%= link_to_add_fields content_tag(:i, '', :class => 'icon-plus', :title => 'Agregar Pista'), f, :pistas, :container => 'pistas' %>
     <table>
       <thead style="margin-bottom: 20px;">
 	<tr>
@@ -45,10 +53,11 @@
 	<% end %>
       </tbody>
     </table>
-    <%= link_to_add_fields "Agregar Pista", f, :pistas, :container => 'pistas' %>
+    
   </fieldset>
-
+  </div>
+</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit%>
   </div>
 <% end %>

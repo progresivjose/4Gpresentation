@@ -1,4 +1,11 @@
+<h2>Ver disco</h2>
+<hr />
+
 <p id="notice"><%= notice %></p>
+<div style="margin-bottom: 20px;">
+  <%= link_to content_tag(:i, '', :class => 'icon-arrow-left', :title => 'Volver a catalogo'), discos_path %>
+  <%= link_to content_tag(:i, '', :class => 'icon-edit', :title => 'Editar'), edit_disco_path(@disco) %> 
+</div>
 
 <p>
   <b>Nombre:</b>
@@ -12,28 +19,29 @@
 
 <p>
   <b>Imagen:</b>
-  <%= image_tag(@disco.imagen_url) if @disco.imagen? %>
+  <%= image_tag @disco.imagen_url, :size => "200x100" if @disco.imagen? %>
 </p>
 <p>
-  
-  <b>Muestra:</b>
-  <%= audio_tag(@disco.muestra, :controls => true) %>
+  <b>Audio:</b>
+  <% browser = request.env['HTTP_USER_AGENT'] %>
+  <% case browser %>
+    <% when /Firefox/  then %>
+    <%= audio_tag(@disco.muestra, :controls => true) %>
+    <% when /Chrome/  then %>
+    <%= audio_tag(@disco.muestra, :controls => true) %>
+    <% when /Safari/  then %>
+    <%= audio_tag(@disco.audio_mp3, :controls => true) %>
+  <% end %>
+
 </p>
+<hr />
 <fieldset>
-  <layaout>Pistas</layaout>
+  <layaout><h3>Pistas</h3></layaout>
   <table>
-    <thead>
+    <% for pista in @disco.pistas.order(' id asc')%>
       <tr>
-	<th>Nombre</th>
+	<td><%= pista.nombre  %></td>
       </tr>
-    </thead>
-    <% for pista in @disco.pistas %>
-    <tr>
-      <td><%= pista.nombre  %></td>
-    </tr>
     <% end %>
   </table>
 </fieldset>
-
-<%= link_to 'Edit', edit_disco_path(@disco) %> |
-<%= link_to 'Back', discos_path %>
