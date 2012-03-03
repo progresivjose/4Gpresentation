@@ -5,7 +5,7 @@ class ProyectosController < ApplicationController
 	
   def index
     @proyectos = Proyecto.all
-#	@user_agent = request.env['HTTP_USER_AGENT']
+		#	@user_agent = request.env['HTTP_USER_AGENT']
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @proyectos }
@@ -125,6 +125,7 @@ class ProyectosController < ApplicationController
 		#copio los archivos necesarios
 		FileUtils.copy("#{Rails.root}/app/assets/stylesheets/glisse.css", "#{Rails.root}/public/downloads/proyecto/css/glisse.css")
 		FileUtils.copy("#{Rails.root}/app/assets/javascripts/glisse.min.js", "#{Rails.root}/public/downloads/proyecto/javascript/glisse.min.js")
+		FileUtils.copy("#{Rails.root}/app/assets/javascripts/audio-player.js", "#{Rails.root}/public/downloads/proyecto/javascript/audio-player.js")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/Mod_background.jpg", "#{Rails.root}/public/downloads/proyecto/images/Mod_background.jpg")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/portada.jpg", "#{Rails.root}/public/downloads/proyecto/images/portada.jpg")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/portada_catalogo.jpg", "#{Rails.root}/public/downloads/proyecto/images/portada_catalogo.jpg")
@@ -134,10 +135,13 @@ class ProyectosController < ApplicationController
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/favicon.ico", "#{Rails.root}/public/downloads/proyecto/images/favicon.ico")
 		FileUtils.copy("#{Rails.root}/app/assets/images/presentacion/LOGO.ico", "#{Rails.root}/public/downloads/proyecto/images/LOGO.ico")
 		FileUtils.copy("#{Rails.root}/public/jquery.min.js", "#{Rails.root}/public/downloads/proyecto/javascript/jquery.min.js")
+		FileUtils.copy("#{Rails.root}/public/jwplayer.js", "#{Rails.root}/public/downloads/proyecto/javascript/jwplayer.min.js")
+		FileUtils.copy("#{Rails.root}/public/player.swf", "#{Rails.root}/public/downloads/proyecto/javascript/player.swf")
+		FileUtils.copy("#{Rails.root}/public/audio-player.swf", "#{Rails.root}/public/downloads/proyecto/javascript/audio-player.swf")
 		
 		discos.each do |disco|
 			FileUtils.copy("#{Rails.root}/public/" + disco.imagen_url.to_s, "#{Rails.root}/public/downloads/proyecto/images/catalogo/" + disco.id.to_s + ".jpg")
-			FileUtils.copy("#{Rails.root}/public/" + disco.muestra_url.to_s, "#{Rails.root}/public/downloads/proyecto/audio/" + disco.id.to_s + ".ogg")
+			FileUtils.copy("#{Rails.root}/public/" + disco.muestra_url.to_s, "#{Rails.root}/public/downloads/proyecto/audio/" + disco.id.to_s + ".mp3")
 		end
 		
 		fotos.each do |foto|
@@ -147,7 +151,7 @@ class ProyectosController < ApplicationController
 		end
 		
 		videos.each do |video|
-			FileUtils.copy("#{Rails.root}/public/" + video.video_url.to_s, "#{Rails.root}/public/downloads/proyecto/video/" + video.id.to_s + ".ogg")
+			FileUtils.copy("#{Rails.root}/public/" + video.video_url.to_s, "#{Rails.root}/public/downloads/proyecto/video/" + video.id.to_s + ".mp4")
 		end
 
 		#creo el index
@@ -220,6 +224,8 @@ class ProyectosController < ApplicationController
 						<link rel="shortcut icon" href="images/favicon.ico" />
 						<script src="javascript/jquery.min.js"></script>
 						<script src="javascript/glisse.min.js"></script>
+						<script type="text/javascript" src="javascript/jwplayer.min.js"></script>
+						<script type="text/javascript" src="javascript/audio-player.js"></script>
 						<link rel="stylesheet" href="css/glisse.css" />
 						<style>
 							body{	background-image: url(images/Mod_background.jpg); }
@@ -263,10 +269,18 @@ class ProyectosController < ApplicationController
 		foto_string << '</div>'
 		
 		#armar catalogo
-		catalogo_string = "<div style=\"height: 1700px;\"><div><h3>Cat&aacute;logo</h3><hr /></div> "
+		catalogo_string = "
+<script type=\"text/javascript\">  
+    AudioPlayer.setup(\"javascript/audio-player.swf\", {  
+      width: 290  
+    });  
+  </script>
+<div style=\"height: 2700px;\">
+									<div><h3>Cat&aacute;logo</h3><hr /></div> "
 		
 		discos.each do |f|
-			catalogo_string << "<div style=\"float: left; padding-left: 22px; margin-right: 20px;\">
+			catalogo_string << "<div style='float: left; width: 100%; margin-bottom: 20px;'>
+											<div style=\"float: left; padding-left: 22px; margin-right: 20px;\">
 											<img style = 'height:228px; width:231px' src='images/catalogo/#{f.id}.jpg' />
 											</div>"
 											
@@ -278,11 +292,15 @@ class ProyectosController < ApplicationController
 			end
 		
 			catalogo_string << "</ul>
-    <audio controls='controls'>
-		<source src='audio/#{f.id}.ogg' type='audio/ogg'/>
-		<source src='audio/#{f.id}.mp3' type='audio/mp3'/>
-	</audio>
-  </div>"
+  
+
+<p id=\"audioplayer_#{f.id}\">Alternative content</p>  
+<script type=\"text/javascript\">  
+  AudioPlayer.embed(\"audioplayer_#{f.id}\", {soundFile: \"audio/#{f.id}.mp3\"});  
+</script>
+  </div>
+			</div>
+			   "
 		end
 		catalogo_string << '</div>'
  
@@ -291,14 +309,19 @@ class ProyectosController < ApplicationController
 		
 		videos.each do |f|
 			video_string << "<div class=\"descripcion\" style=\"margin-left: 10px;\">
+
       <h4>#{f.nombre} </h4>
       <p>#{f.descripcion}</p>
     </div>
-    <div style=\"text-align: center\">
-		<video controls='controls'>
-			<source src = 'video/#{f.id}.ogg' type='video/ogg' />
-			<source src = 'video/#{f.id}.mp4' type='video/mp4' />
-		</video>
+    <div style=\"text-align: center; margin-left: 167px; margin-bottom: 20px;\">
+		<div id=\"mediaplayer\" ></div>
+
+<script type='text/javascript'>
+		jwplayer(\"mediaplayer\").setup({
+			flashplayer: 'javascript/player.swf',
+			file: 'video/#{f.id}.mp4'
+		});
+	</script>
     </div>"
 		end
 		video_string << '</div>'

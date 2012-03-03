@@ -23,15 +23,26 @@
 </p>
 <p>
   <b>Audio:</b>
-  <% browser = request.env['HTTP_USER_AGENT'] %>
-  <% case browser %>
-    <% when /Firefox/  then %>
-    <%= audio_tag(@disco.muestra, :controls => true) %>
-    <% when /Chrome/  then %>
-    <%= audio_tag(@disco.muestra, :controls => true) %>
-    <% when /Safari/  then %>
-    <%= audio_tag(@disco.audio_mp3, :controls => true) %>
-  <% end %>
+<%# browser = request.env['HTTP_USER_AGENT'] %>
+<%# case browser %>
+<%# when /Firefox/  then %>
+<%#= audio_tag(@disco.muestra, :controls => true) %>
+<%# when /Chrome/  then %>
+<%#= audio_tag(@disco.muestra, :controls => true) %>
+<%# when /Safari/  then %>
+<%#= audio_tag(@disco.audio_mp3, :controls => true) %>
+<%# end %>
+
+  <script type="text/javascript">  
+    AudioPlayer.setup("../assets/audio-player.swf", {  
+      width: 290  
+    });  
+  </script> 
+
+<p id="audioplayer_1">Alternative content</p>  
+<script type="text/javascript">  
+  AudioPlayer.embed("audioplayer_1", {soundFile: "<%= @disco.muestra %>"});  
+</script>
 
 </p>
 <hr />

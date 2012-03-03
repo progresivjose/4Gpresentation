@@ -19,15 +19,24 @@
 
 <p>
   <b>Video:</b>
-  <% browser = request.env['HTTP_USER_AGENT'] %>
-  <% case browser %>
-    <% when /Firefox/  then %>
-    <%= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
-    <% when /Chrome/  then %>
-    <%= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
-    <% when /Safari/  then %>
-    <%= video_tag(@video.video_mp4_url, :controls => true, :autobuffer => true) if @video.video?%>
-  <% end %>
-  
-  <%#= image_tag(@video.video_url)  if @video.video? %>
+<%# browser = request.env['HTTP_USER_AGENT'] %>
+<%# case browser %>
+<%# when /Firefox/  then %>
+<%#= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
+<%# when /Chrome/  then %>
+<%#= video_tag(@video.video_url, :controls => true, :autobuffer => true) if @video.video?%>
+<%# when /Safari/  then %>
+<%#= video_tag(@video.video_mp4_url, :controls => true, :autobuffer => true) if @video.video?%>
+<%# end %>
+
+<div id="prueba"></div>
+
+<script type='text/javascript'>
+  jwplayer("prueba").setup({
+    flashplayer: "<%=  '../assets/player.swf' %>",
+    file: '<%= @video.video_url %>'
+  });
+</script>
+
+<%#= image_tag(@video.video_url)  if @video.video? %>
 </p>
