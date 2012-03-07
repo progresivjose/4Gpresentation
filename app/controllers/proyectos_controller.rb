@@ -246,6 +246,7 @@ class ProyectosController < ApplicationController
 								<li><a href="catalogo.html">Cat&aacute;logo</a></li>
 								<li><a href="video.html">Video</a></li>
 								<li><a href="galeria.html">Galer&iacute;a</a></li>
+								<li><a href="contacto.html">Contacto</a></li>
 							</ul>
 						</div>
       <div class="content">'
@@ -308,21 +309,23 @@ class ProyectosController < ApplicationController
 		video_string = "<div><div><h3>Videos</h3><hr /></div>"
 		
 		videos.each do |f|
-			video_string << "<div class=\"descripcion\" style=\"margin-left: 10px;\">
+			video_string << "<div style='padding 2px; width: 100%;'>
+<div class=\"descripcion\" style=\"margin-left: 10px;\">
 
       <h4>#{f.nombre} </h4>
       <p>#{f.descripcion}</p>
     </div>
     <div style=\"text-align: center; margin-left: 167px; margin-bottom: 20px;\">
-		<div id=\"mediaplayer\" ></div>
+		<div id=\"mediaplayer-#{f.id}\" ></div>
 
 <script type='text/javascript'>
-		jwplayer(\"mediaplayer\").setup({
+		jwplayer(\"mediaplayer-#{f.id}\").setup({
 			flashplayer: 'javascript/player.swf',
 			file: 'video/#{f.id}.mp4'
 		});
 	</script>
-    </div>"
+    </div>
+</div>"
 		end
 		video_string << '</div>'
 		
