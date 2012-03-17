@@ -8,8 +8,15 @@
       <h4><%= video.nombre  %> </h4>
       <p><%= video.descripcion  %> </p>
     </div>
-    <div style="text-align: center">
-      <%= video_tag(video.video_url, :controls => true, :autobuffer => true) if video.video? %>
+    <div style="text-align: center; padding-left: 136px;">
+      <div id="video-<%= video.id %>"></div>
     </div>
+    <script type='text/javascript'>
+      jwplayer("video-<%= video.id %>").setup({
+	flashplayer: "<%=  '../../assets/player.swf' %>",
+	file: '<%= video.video_url %>'
+      });
+    </script>
   <% end %>
 </div>
+

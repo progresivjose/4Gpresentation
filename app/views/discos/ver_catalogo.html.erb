@@ -1,24 +1,37 @@
-<div style="height: 2800px;">
+<script type="text/javascript">  
+  AudioPlayer.setup("../../assets/audio-player.swf", {  
+    width: 290  
+  });  
+</script> 
+
+<div>
   <div>
     <h3>Cat&aacute;logo</h3>
     <hr />
   </div>  
   <% @discos.each do |disco| %>
-  <div style="float: left; width: 100%; margin-bottom: 20px;">
-    <div style="float: left; padding-left: 22px; margin-right: 20px;">
-      <%= image_tag(disco.imagen_url, :height => '225', :width => '225')  if disco.imagen? %>
-    </div>
-    <div>
-      <p style="color:#328CBE; font-size: 18px"><%= disco.nombre%> </p>
-      <ul style="list-style: none">
-	<% for pista in disco.pistas %>
-	  <li><%= pista.nombre%> </li>
-	<% end %>
-      </ul>
-      <%= audio_tag(disco.muestra, :controls => true)%>
-    </div>
+    <div style="float: left; width: 100%; margin-bottom: 20px;">
+      <div style="float: left; padding-left: 22px; margin-right: 20px;">
+	<%= image_tag(disco.imagen_url, :height => '225', :width => '225')  if disco.imagen? %>
+      </div>
+      <div>
+	<p style="color:#328CBE; font-size: 18px"><%= disco.nombre%> </p>
+	<ul style="list-style: none">
+	  <% for pista in disco.pistas %>
+	    <li><%= pista.nombre%> </li>
+	  <% end %>
+	</ul>
+	<p id="audioplayer_<%= disco.id %>">Alternative content</p>  
+	<script type="text/javascript">  
+	  AudioPlayer.embed("audioplayer_<%= disco.id %>", {soundFile: "<%= disco.muestra %>"});  
+	</script>  
+
+      </div>
 
     </div>
   <% end %>
 
 </div>
+
+
+

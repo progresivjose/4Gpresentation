@@ -75,10 +75,11 @@ class VideosController < ApplicationController
   # DELETE /videos/1.json
   def destroy
     @video = Video.find(params[:id])
+	proyecto_id = @video.proyecto_id
     @video.destroy
 
     respond_to do |format|
-      format.html { redirect_to videos_url }
+      format.html { redirect_to videos_path(:id =>proyecto_id ) }
       format.json { head :no_content }
     end
   end

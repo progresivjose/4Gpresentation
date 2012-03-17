@@ -1,4 +1,4 @@
-<div style="height: 800px;">
+<div>
   <div>
     <h3>Galer&iacute;a de Im&aacute;genes</h3>
     <hr />
@@ -6,17 +6,14 @@
 
 
   <% @fotos.each do |foto|%>
-    <div style="float: left;margin: 15px;">
-      <div style="margin-bottom: 5px;">
-	<%#= image_tag foto.imagen.thumb('200x200').url, :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
-	<%= image_tag foto.imagen_url, :height => '200', :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
-      </div>
+    <div style="margin: 10px; float:left">
+      <%= image_tag foto.imagen_url, :height => '200', :class => 'pics' , "data-glisse-big" => foto.imagen.url, :rel => 'group', :title => foto.descripcion %>
       <div style="text-align: center;">
 	<%= label_tag(foto.nombre) %>
       </div>
-  <%#= image_tag foto.imagen.thumb('200x200').url, :class => 'pics'%>
     </div>
   <% end %>
+  <div style="clear: both"></div>
 </div>
 <script type="text/javascript">
   $(function(){

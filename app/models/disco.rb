@@ -1,6 +1,6 @@
 class Disco < ActiveRecord::Base
 	has_many :pistas
-	mount_uploader :muestra, AvatarUploader
+	mount_uploader :muestra, AudioUploader
 #	mount_uploader :audio_mp3, AvatarUploader
 	mount_uploader :imagen, AvatarUploader
 	

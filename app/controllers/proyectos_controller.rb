@@ -254,20 +254,18 @@ class ProyectosController < ApplicationController
 		foot = '</div></body></html>'
 		
 		#armar galeria
-		foto_string = "<div style='height: 800px;'>
-								<div><h3>Galer&iacute;a de Im&aacute;genes</h3><hr /></div>"
+		foto_string = "<div><h3>Galer&iacute;a de Im&aacute;genes</h3><hr /></div>"
 		fotos.each do |foto|
-			foto_string << '<div style="float: left; margin: 15px;">
-										<div style="margin-bottom: 5px;">'
-			foto_string << " <img src = 'images/galeria/#{foto.id}.jpg' height='100' class = 'pics'  data-glisse-big = 'images/galeria/#{foto.id}.jpg' rel = 'group' title = '#{foto.descripcion}' "
-			foto_string << "</div>
-      <div style='text-align: center;'>
-			<label>#{foto.descripcion}</label>
-      </div>
-      </div>
-    </div>"
+			foto_string << '<div style="float: left; margin: 10px;">'
+			foto_string << " <img src = 'images/galeria/#{foto.id}.jpg' height='100' class = 'pics'  data-glisse-big = 'images/galeria/#{foto.id}.jpg' rel = 'group' title = '#{foto.descripcion}' />" 
+			foto_string << " <div style='text-align:center'>
+										<label>#{foto.descripcion}</label>
+									</div>								
+									</div> "
 		end
-		foto_string << '</div>'
+		foto_string << "<div style='clear: both'></div>"
+		foto_string << "</div>"
+		
 		
 		#armar catalogo
 		catalogo_string = "
@@ -276,7 +274,7 @@ class ProyectosController < ApplicationController
       width: 290  
     });  
   </script>
-<div style=\"height: 2700px;\">
+<div>
 									<div><h3>Cat&aacute;logo</h3><hr /></div> "
 		
 		discos.each do |f|
@@ -303,7 +301,7 @@ class ProyectosController < ApplicationController
 			</div>
 			   "
 		end
-		catalogo_string << '</div>'
+		catalogo_string << '</div><div style="clear:both"></div>'
  
 		#armar video
 		video_string = "<div><div><h3>Videos</h3><hr /></div>"
